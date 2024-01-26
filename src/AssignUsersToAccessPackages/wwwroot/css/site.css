@@ -20,3 +20,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.select-row:hover {
+    background: blue;
+    color: white;
+    cursor: pointer;
+}
+
+.selected {
+    background: dodgerblue;
+    color: white;
+}

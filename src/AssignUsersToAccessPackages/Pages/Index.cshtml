@@ -4,51 +4,38 @@
     ViewData["Title"] = "Assign users to access packages";
 }
 
-<h4 class="display-6">Welcome @Model.DisplayName</h4>
+<form method="post">
 
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            Users:
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">&nbsp;</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Users</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Users)
                     {
-                        <tr>
-                            <th scope="row">
-                                <input type="checkbox" class="btn-check" id="btn-check-2-outlined" value="@item.ID" checked autocomplete="off">
-                                <label class="btn btn-outline-secondary" for="btn-check-2-outlined">Select</label><br>
-                            </th>
+                        <tr class="select-row" onclick="toggleSelectUser(this, '@item.ID')">
                             <td>@Html.DisplayFor(modelItem => item.Name)</td>
                         </tr>
                     }
-
                 </tbody>
             </table>
         </div>
         <div class="col-sm">
-            Access packages:
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">&nbsp;</th>
                         <th scope="col">Access</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.AccessPackages)
                     {
-                        <tr>
-                            <th scope="row">
-                                <input type="checkbox" class="btn-check" id="btn-check-2-outlined" value="@item.ID" checked autocomplete="off">
-                                <label class="btn btn-outline-secondary" for="btn-check-2-outlined">Select</label><br>
-                            </th>
+                        <tr class="select-row" onclick="toggleSelectAccess(this, '@item.ID')">
                             <td>@Html.DisplayFor(modelItem => item.Name)</td>
                         </tr>
                     }
@@ -57,4 +44,15 @@
             </table>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <button type="submit" class="btn btn-primary">Assign accesses</button>
+        </div>
+    </div>
+
 </div>
+
+    <input type="hidden" asp-for="SelectedUsers" id="selectedUsers" />
+    <input type="hidden" asp-for="SelectedAccesses" id="selectedAccesses" />
+</form>

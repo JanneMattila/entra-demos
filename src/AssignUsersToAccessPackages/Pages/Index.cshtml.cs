@@ -1,5 +1,6 @@
 using AssignUsersToAccessPackages.Models;
 using AssignUsersToAccessPackages.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Graph;
 using Microsoft.Identity.Web;
@@ -17,6 +18,12 @@ public class IndexModel(ILogger<IndexModel> logger, GraphServiceClient graphServ
     public List<DataModel> Users { get; set; } = [];
     public List<DataModel> AccessPackages { get; set; } = [];
 
+    [BindProperty]
+    public List<string> SelectedUsers { get; set; } = [];
+
+    [BindProperty]
+    public List<string> SelectedAccesses { get; set; } = [];
+
     public async Task OnGet()
     {
         var user = await _graphServiceClient.Me.GetAsync();
@@ -24,5 +31,10 @@ public class IndexModel(ILogger<IndexModel> logger, GraphServiceClient graphServ
         DisplayName = user?.DisplayName;
         Users = await _managementService.GetUsers();
         AccessPackages = await _managementService.GetAccessPackages();
+    }
+
+    public async Task OnPost()
+    {
+        await OnGet();
     }
 }
