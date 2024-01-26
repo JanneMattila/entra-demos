@@ -2,6 +2,8 @@
 using Azure.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.Graph.Beta;
+using Microsoft.Graph.Beta.IdentityGovernance.LifecycleWorkflows.Workflows.Item.MicrosoftGraphIdentityGovernanceActivate;
+using Microsoft.Graph.Beta.Models;
 
 namespace AssignUsersToAccessPackages.Services;
 
@@ -51,5 +53,21 @@ public class ManagementService
             ID = u.Id,
             Name = u.DisplayName
         }).ToList();
+    }
+
+    public async Task Assign(List<string> users, List<string> accesses)
+    {
+        var requestBody = new ActivatePostRequestBody
+        {
+            Subjects = users.Select(u => new User
+            {
+                Id = u
+            }).ToList()
+        };
+
+        foreach (var access in accesses)
+        {
+            await _client.IdentityGovernance.LifecycleWorkflows.Workflows[access].MicrosoftGraphIdentityGovernanceActivate.PostAsync(requestBody);
+        }
     }
 }

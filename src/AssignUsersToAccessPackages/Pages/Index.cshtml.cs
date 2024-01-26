@@ -35,6 +35,10 @@ public class IndexModel(ILogger<IndexModel> logger, GraphServiceClient graphServ
 
     public async Task OnPost()
     {
+        if (SelectedUsers.Count > 0 && SelectedAccesses.Count > 0)
+        {
+            await _managementService.Assign(SelectedUsers, SelectedAccesses);
+        }
         await OnGet();
     }
 }
