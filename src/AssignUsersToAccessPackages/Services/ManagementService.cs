@@ -10,7 +10,8 @@ namespace AssignUsersToAccessPackages.Services;
 public class ManagementService
 {
     private readonly GraphServiceClient _client;
-    private readonly string _query;
+    private readonly string _userQuery;
+    private readonly string _accessQuery;
 
     public ManagementService(IOptions<ManagementOptions> options)
     {
@@ -18,7 +19,8 @@ public class ManagementService
         var clientSecretCredential = new ClientSecretCredential(
             options.Value.TenantId, options.Value.ClientId, options.Value.ClientSecret);
 
-        _query = options.Value.Query;
+        _userQuery = options.Value.UserQuery;
+        _accessQuery = options.Value.AccessQuery;
         _client = new GraphServiceClient(clientSecretCredential, scopes);
     }
 
@@ -26,7 +28,7 @@ public class ManagementService
     {
         var result = await _client.Users.GetAsync(request =>
         {
-            request.QueryParameters.Filter = _query;
+            request.QueryParameters.Filter = _userQuery;
         });
 
         ArgumentNullException.ThrowIfNull(result);
@@ -48,7 +50,7 @@ public class ManagementService
         ArgumentNullException.ThrowIfNull(result);
         ArgumentNullException.ThrowIfNull(result.Value);
 
-        return result.Value.Select(u => new DataModel
+        return result.Value.Where(o => o.Description.Contains(_accessQuery)) .Select(u => new DataModel
         {
             ID = u.Id,
             Name = u.DisplayName
