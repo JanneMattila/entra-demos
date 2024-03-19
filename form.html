@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>Entra ID Demo</h2>
+    <script>
+        const postForm = () => {
+            let url = "https://login.microsoftonline.com/" + document.getElementById("tenant_id").value + "/oauth2/v2.0/authorize";
+            document.getElementById("form").action = url;
+            document.getElementById("form").submit();
+        }
+    </script>
+
+    <form id="form" method="post">
+        <label for="tenant_id">Tenant ID:</label><br>
+        <input type="text" id="tenant_id"><br>
+
+        <label for="client_id">Client ID:</label><br>
+        <input type="text" id="client_id" name="client_id"><br>
+
+        <label for="response_type">Response type:</label><br>
+        <input type="text" id="response_type" name="response_type" value="id_token"><br><br>
+
+        <label for="redirect_uri">Redirect uri:</label><br>
+        <input type="text" id="redirect_uri" name="redirect_uri" value="https://jwt.ms"><br><br>
+
+        <label for="response_mode">Response mode:</label><br>
+        <input type="text" id="response_mode" name="response_mode" value="fragment"><br><br>
+
+        <label for="scope">Scope:</label><br>
+        <input type="text" id="scope" name="scope" value="openid"><br><br>
+
+        <label for="state">State:</label><br>
+        <input type="text" id="state" name="state" value="12345"><br><br>
+
+        <label for="nonce">Nonce:</label><br>
+        <input type="text" id="nonce" name="nonce" value="678910"><br><br>
+
+        <input type="button" value="Submit" onclick="postForm()">
+    </form>
+</body>
+
+</html>
+</form>
