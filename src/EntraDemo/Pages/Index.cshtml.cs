@@ -1,11 +1,11 @@
-using AssignUsersToAccessPackages.Models;
-using AssignUsersToAccessPackages.Services;
+using EntraDemo.Models;
+using EntraDemo.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Graph;
 using Microsoft.Identity.Web;
 
-namespace AssignUsersToAccessPackages.Pages;
+namespace EntraDemo.Pages;
 
 [AuthorizeForScopes(ScopeKeySection = "MicrosoftGraph:Scopes")]
 public class IndexModel(ILogger<IndexModel> logger, GraphServiceClient graphServiceClient, ManagementService managementService) : PageModel

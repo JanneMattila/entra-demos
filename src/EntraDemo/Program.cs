@@ -1,7 +1,6 @@
-using AssignUsersToAccessPackages.Models;
-using AssignUsersToAccessPackages.Services;
+using EntraDemo.Models;
+using EntraDemo.Services;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.Graph.Beta;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 

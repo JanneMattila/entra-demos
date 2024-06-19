@@ -1,11 +1,11 @@
-﻿using AssignUsersToAccessPackages.Models;
-using Azure.Identity;
+﻿using Azure.Identity;
+using EntraDemo.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.Graph.Beta;
 using Microsoft.Graph.Beta.IdentityGovernance.LifecycleWorkflows.Workflows.Item.MicrosoftGraphIdentityGovernanceActivate;
 using Microsoft.Graph.Beta.Models;
 
-namespace AssignUsersToAccessPackages.Services;
+namespace EntraDemo.Services;
 
 public class ManagementService
 {

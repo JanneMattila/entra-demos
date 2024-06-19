@@ -1,4 +1,4 @@
-﻿namespace AssignUsersToAccessPackages.Models;
+﻿namespace EntraDemo.Models;
 
 public class ManagementOptions
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AssignUsersToAccessPackages.Pages
+namespace EntraDemo.Pages
 {
     public class PrivacyModel : PageModel
     {
