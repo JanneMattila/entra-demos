@@ -19,7 +19,9 @@
                     @foreach (var item in Model.Users)
                     {
                         <tr class="select-row" onclick="toggleSelectUser(this, '@item.ID')">
-                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>
+                                <a href="~/ManageUser?ID=@item.ID">@Html.DisplayFor(modelItem => item.Name)</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -48,6 +50,7 @@
     <div class="row">
         <div class="col-sm">
             <button type="submit" class="btn btn-primary">Assign accesses</button>
+            <a href="~/ManageUser" class="btn btn-secondary" role="button">Add new user</a>
         </div>
     </div>
 

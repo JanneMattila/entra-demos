@@ -1,0 +1,94 @@
+@page
+@model ManageUserModel
+@{
+    ViewData["Title"] = "Entra demo";
+}
+
+@using (Html.BeginForm())
+{
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+@if (!string.IsNullOrEmpty(Model.NewUserPassword))
+{
+    <h3>New user successfully created!</h3>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewUserPassword, "New user password")
+        @Html.TextBoxFor(m => m.NewUserPassword, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <a href="~/" class="btn btn-secondary" role="button">Close</a>
+    </div>
+}
+else
+{
+            @Html.HiddenFor(m => m.User.ID)
+
+            @if (Model.IsNewUser)
+            {
+                <h3>Add new user</h3>
+            }
+            else
+            {
+                <h3>Edit user</h3>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.User.DisplayName, "Display Name")
+                    @Html.TextBoxFor(m => m.User.DisplayName, new { @class = "form-control" })
+                </div>
+            }
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.User.FirstName, "First Name")
+                @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.User.LastName, "Last Name")
+                @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control" })
+            </div>
+            @if (Model.IsNewUser)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.User.UserPrincipalName, "User Principal Name")
+                    @Html.TextBoxFor(m => m.User.UserPrincipalName, new { @class = "form-control" })
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(m => m.User.JobTitle, "Job Title")
+                @Html.TextBoxFor(m => m.User.JobTitle, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.User.Department)
+                @Html.TextBoxFor(m => m.User.Department, new { @class = "form-control" })
+            </div>
+            <div class="form-check">
+                @Html.LabelFor(m => m.User.AccountEnabled, "Account Enabled", new { @class = "form-check-label" })
+                @Html.CheckBoxFor(m => m.User.AccountEnabled, new { @class = "form-check-input" })
+            </div>
+
+            <div class="mb-3">
+                @if (Model.IsNewUser)
+                {
+                    <button type="submit" class="btn btn-primary" name="action" value="save">Add user</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary" name="action" value="save">Save</button>
+                }
+                <a href="~/" class="btn btn-secondary" role="button">Cancel</a>
+            </div>
+
+            @if (!Model.IsNewUser)
+            {
+                <div class="mb-3">
+                    <br />
+                    <hr />
+                    <br />
+                            <button type="submit" class="btn btn-danger" name="action" value="remove" onclick="return confirm('Are you sure you want to remove user?')">Remove user</button>
+                </div>
+            }
+}
+        </div>
+    </div>
+</div>
+}

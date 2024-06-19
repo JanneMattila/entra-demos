@@ -31,3 +31,20 @@ body {
     background: dodgerblue;
     color: white;
 }
+
+.selected a {
+    color: white;
+}
+
+.select-row a:link {
+    text-decoration: none;
+}
+
+.select-row:hover a {
+    color: white;
+}
+
+.select-row:hover a:hover {
+    color: white;
+    text-decoration: underline;
+}

@@ -29,6 +29,11 @@ builder.Services.AddOptions<ManagementOptions>().Configure<IConfiguration>((sett
     configuration.GetSection("Management").Bind(settings);
 });
 
+builder.Services.AddOptions<UserOptions>().Configure<IConfiguration>((settings, configuration) =>
+{
+    configuration.GetSection("User").Bind(settings);
+});
+
 builder.Services.AddSingleton<ManagementService>();
 
 var app = builder.Build();
