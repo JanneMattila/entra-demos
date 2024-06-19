@@ -23,7 +23,7 @@
 }
 else
 {
-            @Html.HiddenFor(m => m.User.ID)
+            @Html.HiddenFor(m => m.UserProperties.ID)
 
             @if (Model.IsNewUser)
             {
@@ -33,37 +33,37 @@ else
             {
                 <h3>Edit user</h3>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.User.DisplayName, "Display Name")
-                    @Html.TextBoxFor(m => m.User.DisplayName, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.UserProperties.DisplayName, "Display Name")
+                    @Html.TextBoxFor(m => m.UserProperties.DisplayName, new { @class = "form-control" })
                 </div>
             }
 
             <div class="form-group">
-                @Html.LabelFor(m => m.User.FirstName, "First Name")
-                @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control" })
+                @Html.LabelFor(m => m.UserProperties.FirstName, "First Name")
+                @Html.TextBoxFor(m => m.UserProperties.FirstName, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.User.LastName, "Last Name")
-                @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control" })
+                @Html.LabelFor(m => m.UserProperties.LastName, "Last Name")
+                @Html.TextBoxFor(m => m.UserProperties.LastName, new { @class = "form-control" })
             </div>
             @if (Model.IsNewUser)
             {
                 <div class="form-group">
-                    @Html.LabelFor(m => m.User.UserPrincipalName, "User Principal Name")
-                    @Html.TextBoxFor(m => m.User.UserPrincipalName, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.UserProperties.UserPrincipalName, "UserProperties Principal Name")
+                    @Html.TextBoxFor(m => m.UserProperties.UserPrincipalName, new { @class = "form-control" })
                 </div>
             }
             <div class="form-group">
-                @Html.LabelFor(m => m.User.JobTitle, "Job Title")
-                @Html.TextBoxFor(m => m.User.JobTitle, new { @class = "form-control" })
+                @Html.LabelFor(m => m.UserProperties.JobTitle, "Job Title")
+                @Html.TextBoxFor(m => m.UserProperties.JobTitle, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.User.Department)
-                @Html.TextBoxFor(m => m.User.Department, new { @class = "form-control" })
+                @Html.LabelFor(m => m.UserProperties.Department)
+                @Html.TextBoxFor(m => m.UserProperties.Department, new { @class = "form-control" })
             </div>
             <div class="form-check">
-                @Html.LabelFor(m => m.User.AccountEnabled, "Account Enabled", new { @class = "form-check-label" })
-                @Html.CheckBoxFor(m => m.User.AccountEnabled, new { @class = "form-check-input" })
+                @Html.LabelFor(m => m.UserProperties.AccountEnabled, "Account Enabled", new { @class = "form-check-label" })
+                @Html.CheckBoxFor(m => m.UserProperties.AccountEnabled, new { @class = "form-check-input" })
             </div>
 
             <div class="mb-3">

@@ -20,27 +20,27 @@ public class ManageUserModel(ILogger<ManageUserModel> logger, GraphServiceClient
     public string NewUserPassword { get; set; } = string.Empty;
 
     [BindProperty]
-    public UserModel User { get; set; } = new();
+    public UserModel UserProperties { get; set; } = new();
 
     public async Task OnGet(string id)
     {
         if (string.IsNullOrEmpty(id))
         {
-            User.Department = options.Value.DefaultDepartment;
+            UserProperties.Department = options.Value.DefaultDepartment;
         }
         else
         {
-            User = await _managementService.GetUser(id);
+            UserProperties = await _managementService.GetUser(id);
         }
 
-        IsNewUser = string.IsNullOrEmpty(User.ID);
+        IsNewUser = string.IsNullOrEmpty(UserProperties.ID);
     }
 
     public async Task OnPost(string action)
     {
         if (action == "save")
         {
-            var password = await _managementService.ManageUser(User);
+            var password = await _managementService.ManageUser(UserProperties);
             if (string.IsNullOrEmpty(password))
             {
                 Response.Redirect("/");
@@ -52,7 +52,7 @@ public class ManageUserModel(ILogger<ManageUserModel> logger, GraphServiceClient
         }
         else if (action == "remove")
         {
-            await _managementService.RemoveUser(User.ID);
+            await _managementService.RemoveUser(UserProperties.ID);
             Response.Redirect("/");
         }
     }

@@ -147,7 +147,7 @@ public class ManagementService
             var users = await GetUsers();
             if (!users.Any(u => u.ID == user.ID))
             {
-                throw new ArgumentException("User not found", nameof(user.ID));
+                throw new ArgumentException("UserProperties not found", nameof(user.ID));
             }
 
             var existingUser = await _client.Users[user.ID].GetAsync();
