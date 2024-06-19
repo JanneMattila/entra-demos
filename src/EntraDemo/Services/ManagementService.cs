@@ -78,6 +78,12 @@ public class ManagementService
     }
     public async Task<UserModel> GetUser(string id)
     {
+        var users = await GetUsers();
+        if (!users.Any(u => u.ID == id))
+        {
+            throw new ArgumentException("User not found", nameof(id));
+        }
+
         var user = await _client.Users[id].GetAsync();
 
         ArgumentNullException.ThrowIfNull(user);
@@ -138,6 +144,12 @@ public class ManagementService
         }
         else
         {
+            var users = await GetUsers();
+            if (!users.Any(u => u.ID == user.ID))
+            {
+                throw new ArgumentException("User not found", nameof(user.ID));
+            }
+
             var existingUser = await _client.Users[user.ID].GetAsync();
             if (existingUser != null)
             {
