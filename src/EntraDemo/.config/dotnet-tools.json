@@ -6,7 +6,15 @@
       "version": "2.0.7",
       "commands": [
         "dotnet-msidentity"
-      ]
+      ],
+      "rollForward": false
+    },
+    "dotnet-ef": {
+      "version": "9.0.1",
+      "commands": [
+        "dotnet-ef"
+      ],
+      "rollForward": false
     }
   }
 }
